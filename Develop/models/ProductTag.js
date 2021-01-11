@@ -21,9 +21,16 @@ ProductTag.init(
     },
 
     // product_id
-    // Integer
-    // References the product model's id
-    //
+    product_id: {
+      // Integer
+      type: DataTypes.INTEGER,
+      // References the product model's id
+      references: {
+        model: "tag",
+        key: "id",
+      },
+    },
+
     // tag_id
     // Integer
     // References the tag model's id
