@@ -25,7 +25,9 @@ Product.init(
     // product_name
     product_name: {
       // String
+      type: DataTypes.STRING,
       // Doesn't allow null values
+      allowNull: false,
     },
 
     // price
