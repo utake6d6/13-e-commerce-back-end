@@ -33,8 +33,13 @@ Product.init(
     // price
     price: {
       // Decimal
+      type: DataTypes.DECIMAL(10, 2),
       // Doesn't allow null values
+      allowNull: false,
       // Validates that the value is a decimal
+      validate: {
+        isDecimal: true,
+      },
     },
 
     // stock
