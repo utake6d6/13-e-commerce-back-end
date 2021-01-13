@@ -4,9 +4,9 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 // The `/api/products` endpoint
 
 // get all products
+// find all products
+// be sure to include its associated Category and Tag data
 router.get("/", async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   const products = await Product.findAll({
     attributes: ["id", "product_name", "price", "stock", "category_id"],
     include: [
@@ -37,8 +37,10 @@ router.get("/:id", async (req, res) => {
         model: Category,
         attributes: ["id", "category_name"],
       },
-      (model: Tag),
-      (attributes: ["id", "tag_name"]),
+      {
+        model: Tag,
+        attributes: ["id", "tag_name"],
+      },
     ],
   });
   res.json(product);
@@ -118,14 +120,14 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
   const product = await Product.destroy({
     where: {
       id: req.params.id,
     },
   });
-  res,json(product);
+  res, json(product);
 });
 
 module.exports = router;
